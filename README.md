@@ -1,3 +1,135 @@
+# Desafio WAR Estruturado (C)
+
+Projeto pedagógico com três níveis do desafio WAR em linguagem C. Cada nível expande em complexidade e funcionalidades, demonstrando conceitos fundamentais de programação em C.
+
+## Níveis
+
+### 🟢 Nível Novato — Cadastro Inicial (`war_novato.c`)
+- **Objetivo:** Cadastro e exibição de territórios.
+- **Características:**
+  - Struct `Territorio` com campos: `nome`, `cor`, `tropas`
+  - Vetor estático com 5 territórios
+  - Funções para cadastro via `fgets` e `sscanf` (entrada segura)
+  - Exibição organizada do mapa
+- **Entrada:** nome, cor e número de tropas para cada território
+- **Saída:** impressão organizada dos 5 territórios
+
+### 🔵 Nível Aventureiro — Batalhas Estratégicas (`war_aventureiro.c`)
+- **Objetivo:** Sistema de batalhas interativas com alocação dinâmica.
+- **Características:**
+  - Alocação dinâmica com `calloc()` e liberação com `free()`
+  - Função `simularAtaque()` com regras de dado (1–6)
+  - Empates favorecem o atacante
+  - Conquista: defensor com 0 tropas muda de cor
+  - Loop interativo: escolher atacante/defensor, simular batalha, visualizar mapa atualizado
+- **Entrada:** cadastro de 5 territórios, escolha de atacante/defensor
+- **Saída:** resultado de cada batalha, mapa atualizado em tempo real
+
+### 🟣 Nível Mestre — Modularização + Missões (`war_mestre.c`)
+- **Objetivo:** Versão totalmente modularizada com sistema de missões aleatórias.
+- **Características:**
+  - Funções bem separadas:
+    - `inicializarTerritoriosAutomatico()` — dados fixos pré-carregados
+    - `mostrarMapa()` — exibe estado do mapa
+    - `simularAtaque()` — simula batalha
+    - `atribuirMissao()` — gera missão aleatória
+    - `verificarMissao()` — verifica cumprimento
+    - `menuPrincipal()` — loop interativo com menu
+  - Missões aleatórias: "Destruir o exército [cor]" ou "Conquistar 3 territórios"
+  - Verificação automática de vitória ao cumprir missão
+  - Menu interativo:
+    - `1` — Atacar
+    - `2` — Verificar Missão
+    - `0` — Sair
+- **Entrada:** escolhas via menu (1, 2, 0)
+- **Saída:** mapa, missão, resultado de batalhas e mensagem de vitória
+
+## Compilação
+
+Compile cada programa com:
+
+```bash
+gcc -Wall -Wextra -std=c11 -o war_novato war_novato.c
+gcc -Wall -Wextra -std=c11 -o war_aventureiro war_aventureiro.c
+gcc -Wall -Wextra -std=c11 -o war_mestre war_mestre.c
+```
+
+Ou compile todos de uma vez:
+
+```bash
+gcc -Wall -Wextra -std=c11 -o war_novato war_novato.c && \
+gcc -Wall -Wextra -std=c11 -o war_aventureiro war_aventureiro.c && \
+gcc -Wall -Wextra -std=c11 -o war_mestre war_mestre.c
+```
+
+## Execução
+
+Execute cada programa interativamente:
+
+```bash
+./war_novato
+./war_aventureiro
+./war_mestre
+```
+
+### Exemplo de Uso (Nível Novato)
+```
+$ ./war_novato
+╔════════════════════════════════════════╗
+║  BEM-VINDO AO WAR - NÍVEL NOVATO      ║
+╚════════════════════════════════════════╝
+
+=== CADASTRO DE TERRITÓRIOS ===
+Digite os dados de cada território:
+
+Território 1:
+  Nome: Brasil
+  Cor: Azul
+  Número de tropas: 5
+  
+... (mais 4 territórios) ...
+
+╔════════════════════════════════════════╗
+║        ESTADO DO MAPA - WAR            ║
+╚════════════════════════════════════════╝
+
+Território 1:
+  ├─ Nome:   Brasil
+  ├─ Cor:    Azul
+  └─ Tropas: 5
+```
+
+## Conceitos Demonstrados
+
+✅ **Struct e tipos de dados** — definição e uso de estruturas
+✅ **Vetores estáticos e dinâmicos** — alocação em stack e heap
+✅ **Ponteiros** — manipulação de endereços e alocação dinâmica
+✅ **calloc/free** — gerenciamento de memória
+✅ **Funções** — modularização e reutilização de código
+✅ **rand()/srand()** — geração de números aleatórios
+✅ **Entrada/Saída segura** — `fgets()`, `sscanf()`, `scanf()`
+✅ **Controle de fluxo** — loops, condicionais, switches
+✅ **Enums** — tipos enumerados para tipos de missão
+✅ **Boas práticas** — comentários, nomes descritivos, uso de `const`
+
+## Estrutura de Arquivos
+
+```
+/workspaces/war-DiogoMoreschi/
+├── war_novato.c        # Versão Novato
+├── war_aventureiro.c   # Versão Aventureiro
+├── war_mestre.c        # Versão Mestre
+├── README.md           # Este arquivo
+└── war_novato          # Executável compilado
+```
+
+## Notas
+
+- Código comentado e didático para fins de aprendizado
+- Todos os programas usam `srand(time(NULL))` para aleatoriedade
+- Compatível com compiladores GCC/Clang modernos
+- Testado em Ubuntu 24.04 LTS
+- Requisitos mínimos: C99 ou C11
 # 🗺️ Desafio WAR Estruturado – Conquista de Territórios
 
 Bem-vindo ao **Desafio WAR Estruturado!** Inspirado no famoso jogo de estratégia, este desafio convida você a programar diferentes versões do jogo WAR, evoluindo seus conhecimentos em **C** à medida que avança pelos níveis **Novato**, **Aventureiro** e **Mestre**.
